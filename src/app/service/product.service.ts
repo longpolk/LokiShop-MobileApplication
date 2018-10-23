@@ -3,7 +3,7 @@ import * as firebase from "nativescript-plugin-firebase";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 
-import { Car } from "./car.model";
+import { Product } from "~/app/model/product.model";
 
 const editableProperties = [
     "doors",
@@ -25,22 +25,22 @@ const editableProperties = [
 * Check out how it is imported in the main.ts file and the actual script in /shared/firebase.common.ts file.
 *************************************************************/
 @Injectable()
-export class CarService {
-    private static cloneUpdateModel(car: Car): object {
-        return editableProperties.reduce((a, e) => (a[e] = car[e], a), {}); // tslint:disable-line:ban-comma-operator
+export class ProductService {
+    private static cloneUpdateModel(product: Product): object {
+        return editableProperties.reduce((a, e) => (a[e] = product[e], a), {}); // tslint:disable-line:ban-comma-operator
     }
 
-    private _cars: Array<Car> = [];
+    private _products: Array<Product> = [];
 
     constructor(private _ngZone: NgZone) { }
 
-    getCarById(id: string): Car {
+    getProductById(id: string): Product {
         if (!id) {
             return;
         }
 
-        return this._cars.filter((car) => {
-            return car.id === id;
+        return this._products.filter((product) => {
+            return product.id === id;
         })[0];
     }
 
@@ -58,10 +58,10 @@ export class CarService {
         }).pipe(catchError(this.handleErrors));
     }
 
-    update(carModel: Car): Promise<any> {
-        const updateModel = CarService.cloneUpdateModel(carModel);
+    update(productModel: Product): Promise<any> {
+        const updateModel = ProductService.cloneUpdateModel(productModel);
 
-        return firebase.update("/cars/" + carModel.id, updateModel);
+        return firebase.update("/cars/" + productModel.id, updateModel);
     }
 
     uploadImage(remoteFullPath: string, localFullPath: string): Promise<any> {
@@ -72,18 +72,18 @@ export class CarService {
         });
     }
 
-    private handleSnapshot(data: any): Array<Car> {
-        this._cars = [];
+    private handleSnapshot(data: any): Array<Product> {
+        this._products = [];
 
         if (data) {
             for (const id in data) {
                 if (data.hasOwnProperty(id)) {
-                    this._cars.push(new Car(data[id]));
+                    this._products.push(new Product(data[id]));
                 }
             }
         }
 
-        return this._cars;
+        return this._products;
     }
 
     private handleErrors(error: Response): Observable<never> {

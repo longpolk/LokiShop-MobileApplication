@@ -1,12 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { PageRoute, RouterExtensions } from "nativescript-angular/router";
 import { switchMap } from "rxjs/operators";
-import { alert } from "tns-core-modules/ui/dialogs";
+import { alert } from "tns-core-modules/ui/dialogs/dialogs";
 
-import { CarEditService } from "../shared/car-edit.service";
-import { Car } from "../shared/car.model";
-import { CarService } from "../shared/car.service";
-import { carClassList, carDoorList, carSeatList, carTransmissionList } from "./constants";
+import {  } from "../../service/product-edit.service";
+import { Product } from "../../model/product.model";
+import { ProductService } from "../../service/product.service";
+import { ProductEditService } from "../../service/product-edit.service";
+import { carClassList, carDoorList, carSeatList, carTransmissionList } from "~/app/cars/car-detail-edit/constants";
 
 @Component({
     moduleId: module.id,
@@ -15,17 +16,17 @@ import { carClassList, carDoorList, carSeatList, carTransmissionList } from "./c
     styleUrls: ["./car-detail-edit.component.scss"]
 })
 export class CarDetailEditComponent implements OnInit {
-    private _car: Car;
-    private _carClassOptions: Array<string> = [];
-    private _carDoorOptions: Array<number> = [];
-    private _carSeatOptions: Array<string> = [];
-    private _carTransmissionOptions: Array<string> = [];
+    private _product: Product;
+    private _productClassOptions: Array<string> = [];
+    private _productDoorOptions: Array<number> = [];
+    private _productSeatOptions: Array<string> = [];
+    private _productTransmissionOptions: Array<string> = [];
     private _isCarImageDirty: boolean = false;
     private _isUpdating: boolean = false;
 
     constructor(
-        private _carService: CarService,
-        private _carEditService: CarEditService,
+        private _productService: ProductService,
+        private _productEditService: ProductEditService,
         private _pageRoute: PageRoute,
         private _routerExtensions: RouterExtensions
     ) { }
@@ -38,7 +39,7 @@ export class CarDetailEditComponent implements OnInit {
             .forEach((params) => {
                 const carId = params.id;
 
-                this._car = this._carEditService.startEdit(carId);
+                this._product = this._productEditService.startEdit(carId);
             });
     }
 
@@ -46,50 +47,50 @@ export class CarDetailEditComponent implements OnInit {
         return this._isUpdating;
     }
 
-    get car(): Car {
-        return this._car;
+    get car(): Product {
+        return this._product;
     }
 
     get pricePerDay(): number {
-        return this._car.price;
+        return this._product.price;
     }
 
     set pricePerDay(value: number) {
         // force iOS UISlider to work with discrete steps
-        this._car.price = Math.round(value);
+        this._product.price = Math.round(value);
     }
 
     get luggageValue(): number {
-        return this._car.luggage;
+        return this._product.luggage;
     }
 
     set luggageValue(value: number) {
         // force iOS UISlider to work with discrete steps
-        this._car.luggage = Math.round(value);
+        this._product.luggage = Math.round(value);
     }
 
     get carClassOptions(): Array<string> {
-        return this._carClassOptions;
+        return this._productClassOptions;
     }
 
     get carDoorOptions(): Array<number> {
-        return this._carDoorOptions;
+        return this._productDoorOptions;
     }
 
     get carSeatOptions(): Array<string> {
-        return this._carSeatOptions;
+        return this._productSeatOptions;
     }
 
     get carTransmissionOptions(): Array<string> {
-        return this._carTransmissionOptions;
+        return this._productTransmissionOptions;
     }
 
     get carImageUrl(): string {
-        return this._car.imageUrl;
+        return this._product.imageUrl;
     }
 
     set carImageUrl(value: string) {
-        this._car.imageUrl = value;
+        this._product.imageUrl = value;
         this._isCarImageDirty = true;
     }
 
@@ -109,15 +110,15 @@ export class CarDetailEditComponent implements OnInit {
 
         this._isUpdating = true;
 
-        if (this._isCarImageDirty && this._car.imageUrl) {
+        if (this._isCarImageDirty && this._product.imageUrl) {
             queue = queue
-                .then(() => this._carService.uploadImage(this._car.imageStoragePath, this._car.imageUrl))
+                .then(() => this._productService.uploadImage(this._product.imageStoragePath, this._product.imageUrl))
                 .then((uploadedFile: any) => {
-                    this._car.imageUrl = uploadedFile.url;
+                    this._product.imageUrl = uploadedFile.url;
                 });
         }
 
-        queue.then(() => this._carService.update(this._car))
+        queue.then(() => this._productService.update(this._product))
             .then(() => {
                 this._isUpdating = false;
                 this._routerExtensions.navigate(["/cars"], {
@@ -155,19 +156,19 @@ export class CarDetailEditComponent implements OnInit {
 
     private initializeEditOptions(): void {
         for (const classItem of carClassList) {
-            this._carClassOptions.push(classItem);
+            this._productClassOptions.push(classItem);
         }
 
         for (const doorItem of carDoorList) {
-            this._carDoorOptions.push(doorItem);
+            this._productDoorOptions.push(doorItem);
         }
 
         for (const seatItem of carSeatList) {
-            this._carSeatOptions.push(seatItem);
+            this._productSeatOptions.push(seatItem);
         }
 
         for (const transmissionItem of carTransmissionList) {
-            this._carTransmissionOptions.push(transmissionItem);
+            this._productTransmissionOptions.push(transmissionItem);
         }
     }
 }

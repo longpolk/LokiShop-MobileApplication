@@ -3,9 +3,9 @@ import { ModalDialogOptions, ModalDialogService } from "nativescript-angular/mod
 import { PageRoute } from "nativescript-angular/router";
 import { switchMap } from "rxjs/operators";
 
-import { CarEditService } from "../../shared/car-edit.service";
-import { Car } from "../../shared/car.model";
-import { MyListSelectorModalViewComponent } from "./my-list-selector-modal-view.component";
+import { ProductEditService } from "../../../service/product-edit.service";
+import { Product } from "../../../model/product.model";
+import { MyListSelectorModalViewComponent } from "~/app/cars/car-detail-edit/my-list-selector/my-list-selector-modal-view.component";
 
 const capitalizeFirstLetter = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
@@ -27,13 +27,13 @@ export class MyListSelectorComponent implements OnInit {
     @Input() selectedValue: string;
     @Output() selectedValueChange = new EventEmitter<string>();
 
-    private _carEditModel: Car;
+    private _carEditModel: Product;
 
     constructor(
         private _pageRoute: PageRoute,
         private _modalService: ModalDialogService,
         private _vcRef: ViewContainerRef,
-        private _carEditService: CarEditService) { }
+        private _carEditService: ProductEditService) { }
 
     ngOnInit(): void {
         let carId = "";
@@ -45,11 +45,11 @@ export class MyListSelectorComponent implements OnInit {
                 carId = params.id;
             });
 
-        this._carEditModel = this._carEditService.getEditableCarById(carId);
+        this._carEditModel = this._carEditService.getEditableProductById(carId);
     }
 
     onSelectorTap(): void {
-        const title = `Select Car ${capitalizeFirstLetter(this.tag)}`;
+        const title = `Select Product ${capitalizeFirstLetter(this.tag)}`;
         const selectedIndex = this.items.indexOf(this.selectedValue);
         const options: ModalDialogOptions = {
             viewContainerRef: this._vcRef,

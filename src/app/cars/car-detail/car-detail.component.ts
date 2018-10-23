@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { PageRoute, RouterExtensions } from "nativescript-angular/router";
 import { switchMap } from "rxjs/operators";
 
-import { Car } from "../shared/car.model";
-import { CarService } from "../shared/car.service";
+import { Product } from "../../model/product.model";
+import { ProductService } from "../../service/product.service";
 
 /* ***********************************************************
 * This is the item details component in the master-detail structure.
@@ -16,10 +16,10 @@ import { CarService } from "../shared/car.service";
     templateUrl: "./car-detail.component.html"
 })
 export class CarDetailComponent implements OnInit {
-    private _car: Car;
+    private _car: Product;
 
     constructor(
-        private _carService: CarService,
+        private _carService: ProductService,
         private _pageRoute: PageRoute,
         private _routerExtensions: RouterExtensions
     ) { }
@@ -39,11 +39,11 @@ export class CarDetailComponent implements OnInit {
             .forEach((params) => {
                 const carId = params.id;
 
-                this._car = this._carService.getCarById(carId);
+                this._car = this._carService.getProductById(carId);
             });
     }
 
-    get car(): Car {
+    get car(): Product {
         return this._car;
     }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { initFirebase } from "./shared/firebase.common";
+import { initFirebase } from "~/app/shared/firebase.common";
 
 @Component({
     moduleId: module.id,
