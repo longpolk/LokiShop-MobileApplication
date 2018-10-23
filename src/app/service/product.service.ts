@@ -46,7 +46,7 @@ export class ProductService {
 
     load(): Observable<any> {
         return new Observable((observer: any) => {
-            const path = "cars";
+            const path = "/category/phones/phone-list";
 
             const onValueEvent = (snapshot: any) => {
                 this._ngZone.run(() => {

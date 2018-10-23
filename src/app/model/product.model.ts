@@ -9,7 +9,7 @@ export class Product {
     price: number;
     transmission: string;
     imageUrl: string;
-    imageStoragePath: string;
+    thumb: string;
 
     constructor(options: any) {
         this.id = options.id;
@@ -22,6 +22,6 @@ export class Product {
         this.price = Number(options.price);
         this.transmission = options.transmission;
         this.imageUrl = options.imageUrl;
-        this.imageStoragePath = options.imageStoragePath;
+        this.thumb = options.thumb;
     }
 }
