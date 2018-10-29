@@ -45,6 +45,7 @@ export class ProductService {
 
     load(): Observable<any> {
         return new Observable((observer: any) => {
+<<<<<<< HEAD
           let path = 'category/phones/phone-list';
           
             let onValueEvent = (snapshot: any) => {
@@ -53,6 +54,15 @@ export class ProductService {
                 console.log(JSON.stringify(results))
                  observer.next(results);
               });
+=======
+            const path = "category/phones/phone-list";
+
+            const onValueEvent = (snapshot: any) => {
+                this._ngZone.run(() => {
+                    const results = this.handleSnapshot(snapshot.value);
+                    observer.next(results);
+                });
+>>>>>>> c6416a3fffee971a73e4197286ecf77187112c84
             };
             firebase.addValueEventListener(onValueEvent, `/${path}`);
         });              
