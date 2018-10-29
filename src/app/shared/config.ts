@@ -1,3 +1,3 @@
 export class Config {
-    static firebaseBucket = "gs://car-rental-b26b7.appspot.com/";
+    static firebaseBucket = "gs://lokishop-2018.appspot.com";
 }

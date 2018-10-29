@@ -17,6 +17,6 @@ export function initFirebase() {
     firebase.init({
         persist: false,
         storageBucket: Config.firebaseBucket
-    }).then((instance) => console.log("firebase.init done"),
+    }).then((instance) => console.log("firebase.init done - "+ instance),
         (error) => console.log("firebase.init error: " + error));
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+/*import { Component, OnInit } from "@angular/core";
 import { PageRoute, RouterExtensions } from "nativescript-angular/router";
 import { switchMap } from "rxjs/operators";
 import { alert } from "tns-core-modules/ui/dialogs/dialogs";
@@ -140,6 +140,7 @@ export class CarDetailEditComponent implements OnInit {
         /* ***********************************************************
         * Comment out the code block below if you made the app editable.
         *************************************************************/
+       /*
         const readOnlyMessage = "Check out the \"Firebase database setup\" section in the readme file to make it editable."; // tslint:disable-line:max-line-length
         const queue = Promise.resolve();
         queue.then(() => alert({ title: "Read-Only Template!", message: readOnlyMessage, okButtonText: "Ok" }))
@@ -172,3 +173,4 @@ export class CarDetailEditComponent implements OnInit {
         }
     }
 }
+*/

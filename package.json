@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.LokiShop2018",
+    "id": "com.lokishop.app",
     "tns-android": {
       "version": "4.2.0"
     },

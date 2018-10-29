@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+/*import { Component } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 
 @Component({
@@ -48,3 +48,4 @@ export class MyListSelectorModalViewComponent {
         return this._title;
     }
 }
+*/

@@ -3,14 +3,14 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular/listview-directives";
 
-import { CarDetailEditComponent } from "~/app/cars/car-detail-edit/car-detail-edit.component";
+//import { CarDetailEditComponent } from "~/app/cars/car-detail-edit/car-detail-edit.component";
 import { MyImageAddRemoveComponent } from "~/app/cars/car-detail-edit/my-image-add-remove/my-image-add-remove.component";
-import { MyListSelectorModalViewComponent } from "~/app/cars/car-detail-edit/my-list-selector/my-list-selector-modal-view.component"; // tslint:disable-line:max-line-length
-import { MyListSelectorComponent } from "~/app/cars/car-detail-edit/my-list-selector/my-list-selector.component";
+//import { MyListSelectorModalViewComponent } from "~/app/cars/car-detail-edit/my-list-selector/my-list-selector-modal-view.component"; // tslint:disable-line:max-line-length
+//import { MyListSelectorComponent } from "~/app/cars/car-detail-edit/my-list-selector/my-list-selector.component";
 import { CarDetailComponent } from "~/app/cars/car-detail/car-detail.component";
 import { ProductListComponent } from "~/app/cars/car-list.component";
 import { CarsRoutingModule } from "~/app/cars/cars-routing.module";
-import { ProductEditService } from "../service/product-edit.service";
+//import { ProductEditService } from "../service/product-edit.service";
 import { ProductService } from "../service/product.service";
 
 @NgModule({
@@ -23,17 +23,17 @@ import { ProductService } from "../service/product.service";
     declarations: [
         ProductListComponent,
         CarDetailComponent,
-        CarDetailEditComponent,
-        MyListSelectorComponent,
-        MyListSelectorModalViewComponent,
+        //CarDetailEditComponent,
+        //MyListSelectorComponent,
+        //MyListSelectorModalViewComponent,
         MyImageAddRemoveComponent
     ],
     entryComponents: [
-        MyListSelectorModalViewComponent
+        //MyListSelectorModalViewComponent
     ],
     providers: [
         ProductService,
-        ProductEditService
+        //ProductEditService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

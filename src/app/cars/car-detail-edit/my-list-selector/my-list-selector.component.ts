@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewContainerRef } from "@angular/core";
+/*import { Component, EventEmitter, Input, OnInit, Output, ViewContainerRef } from "@angular/core";
 import { ModalDialogOptions, ModalDialogService } from "nativescript-angular/modal-dialog";
 import { PageRoute } from "nativescript-angular/router";
 import { switchMap } from "rxjs/operators";
@@ -15,6 +15,7 @@ const capitalizeFirstLetter = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 * contents of the modal page. Learn more about modal pages in this documentation article:
 * https://docs.nativescript.org/angular/code-samples/modal-page
 *************************************************************/
+/*
 @Component({
     moduleId: module.id,
     providers: [ModalDialogService],
@@ -70,3 +71,4 @@ export class MyListSelectorComponent implements OnInit {
             });
     }
 }
+*/

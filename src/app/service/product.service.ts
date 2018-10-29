@@ -1,11 +1,10 @@
 import { Injectable, NgZone } from "@angular/core";
 import * as firebase from "nativescript-plugin-firebase";
 import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
 
 import { Product } from "~/app/model/product.model";
 
-const editableProperties = [
+/*const editableProperties = [
     "doors",
     "imageUrl",
     "luggage",
@@ -14,7 +13,7 @@ const editableProperties = [
     "seats",
     "transmission",
     "class"
-];
+];*/
 
 /* ***********************************************************
 * This is the master detail data service. It handles all the data operations
@@ -26,9 +25,9 @@ const editableProperties = [
 *************************************************************/
 @Injectable()
 export class ProductService {
-    private static cloneUpdateModel(product: Product): object {
+    /*private static cloneUpdateModel(product: Product): object {
         return editableProperties.reduce((a, e) => (a[e] = product[e], a), {}); // tslint:disable-line:ban-comma-operator
-    }
+    }*/
 
     private _products: Array<Product> = [];
 
@@ -46,23 +45,24 @@ export class ProductService {
 
     load(): Observable<any> {
         return new Observable((observer: any) => {
-            const path = "/category/phones/phone-list";
-
-            const onValueEvent = (snapshot: any) => {
-                this._ngZone.run(() => {
-                    const results = this.handleSnapshot(snapshot.value);
-                    observer.next(results);
-                });
+          let path = 'category/phones/phone-list';
+          
+            let onValueEvent = (snapshot: any) => {
+              this._ngZone.run(() => {
+                let results = this.handleSnapshot(snapshot.value);
+                console.log(JSON.stringify(results))
+                 observer.next(results);
+              });
             };
             firebase.addValueEventListener(onValueEvent, `/${path}`);
-        }).pipe(catchError(this.handleErrors));
-    }
+        });              
+      }
 
-    update(productModel: Product): Promise<any> {
+    /*update(productModel: Product): Promise<any> {
         const updateModel = ProductService.cloneUpdateModel(productModel);
 
         return firebase.update("/cars/" + productModel.id, updateModel);
-    }
+    }*/
 
     uploadImage(remoteFullPath: string, localFullPath: string): Promise<any> {
         return firebase.storage.uploadFile({
@@ -82,7 +82,7 @@ export class ProductService {
                 }
             }
         }
-
+        console.log(this._products);
         return this._products;
     }
 

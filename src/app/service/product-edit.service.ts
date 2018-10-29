@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+/*import { Injectable } from "@angular/core";
 import { ProductService } from "~/app/service/product.service";
 import { Product } from "../model/product.model";
 
@@ -24,4 +24,4 @@ export class ProductEditService {
 
         return this._editModel;
     }
-}
+}*/

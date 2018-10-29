@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:997142550057:android:fa9a6ccc35f8c8ad",
         "android_client_info": {
-          "package_name": "org.nativescript.LokiShop2018"
+          "package_name": "com.lokishop.app"
         }
       },
       "oauth_client": [
